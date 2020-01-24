@@ -25,6 +25,12 @@
 				</ul>
 			</div>
 		</nav>
+		
+		<div class="alert alert-success" th:text="${success}" th:if="${success != null}"></div>
+		<div class="alert alert-danger" th:text="${error}" th:if="${error != null}"></div>
+		<div class="alert alert-warning" th:text="${warning}" th:if="${warning != null}"></div>
+		<div class="alert alert-info" th:text="${info}" th:if="${info != null}"></div>
+		
 	</header>
 	<div class="container"></div>
 
