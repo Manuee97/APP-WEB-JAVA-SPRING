@@ -8,10 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -27,16 +29,32 @@ public class Cliente implements Serializable {
 	/*
 	 * Para indicar que en la columna de la base de datos se llama diferente
 	 * 
-	 * @Column(name="Nombre_cliente")
+	 * 		@Column(name="Nombre_cliente")
+	 * 
+	 * Para poner un límite
+	 * 
+	 * 		@Size(min=2, max=12)
 	 */
+	
+	@NotEmpty
 	private String nombre;
+	
+	@NotEmpty
 	private String apellido;
+	
+	@NotEmpty
+	@Email
 	private String email;
 
-	@Column(name = "create_at")
+	@NotNull
+	@Column(name = "create_at") 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createAt;
+	
+	
+	
+	
 
 	public Long getId() {
 		return id;
@@ -45,6 +63,7 @@ public class Cliente implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 
 	public String getNombre() {
 		return nombre;
@@ -54,6 +73,7 @@ public class Cliente implements Serializable {
 		this.nombre = nombre;
 	}
 
+	
 	public String getApellido() {
 		return apellido;
 	}
@@ -62,6 +82,7 @@ public class Cliente implements Serializable {
 		this.apellido = apellido;
 	}
 
+	
 	public String getEmail() {
 		return email;
 	}
@@ -70,6 +91,7 @@ public class Cliente implements Serializable {
 		this.email = email;
 	}
 
+	
 	public Date getCreateAt() {
 		return createAt;
 	}
